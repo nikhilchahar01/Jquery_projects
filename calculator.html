@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Calculator</title>
+    <!--Jquery CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--Custom CSS-->
+    <style type="text/css">
+        .calc {
+            width: 200px;
+            margin: 0 auto;
+            border: 1px solid #000;
+            padding: 10px;
+        }
+        .calc-display {
+            width: 100%;
+            height: 40px;
+            text-align: right;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        table {
+            width: 100%;
+        }
+        input[type="button"] {
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+        }
+    </style>
+    <!--Custom JS-->
+    <script>
+        $(document).ready(function() {
+            function show(num) {
+                $('.calc-display').val($('.calc-display').val() + num);
+            }
+
+            function get() {
+                try {
+                    var result = eval($('.calc-display').val());
+                    if (result === Infinity || isNaN(result)) {
+                        result = 'Error';
+                    }
+                    $('.calc-display').val(result);
+                } catch (e) {
+                    $('.calc-display').val('Error');
+                }
+            }
+
+            function set() {
+                $('.calc-display').val('');
+            }
+
+            function del() {
+                var value = $('.calc-display').val();
+                $('.calc-display').val(value.substring(0, value.length - 1));
+            }
+
+            $('input[type="button"]').click(function() {
+                var value = $(this).val();
+                if (value === "=") {
+                    get();
+                } else if (value === "C") {
+                    set();
+                } else if (value === "<") {
+                    del();
+                } else {
+                    show(value);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="calc">
+        <input class="calc-display" readonly>
+        <table>
+            <tr>
+                <td><input type="button" value="C"></td>
+                <td><input type="button" value="/"></td>
+                <td><input type="button" value="<"></td>
+                <td><input type="button" value="x"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="7"></td>
+                <td><input type="button" value="8"></td>
+                <td><input type="button" value="9"></td>
+                <td><input type="button" value="-"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="4"></td>
+                <td><input type="button" value="5"></td>
+                <td><input type="button" value="6"></td>
+                <td><input type="button" value="+"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="1"></td>
+                <td><input type="button" value="2"></td>
+                <td><input type="button" value="3"></td>
+                <td><input type="button" value="="></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="0"></td>
+                <td><input type="button" value="."></td>
+                <td colspan="2"></td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

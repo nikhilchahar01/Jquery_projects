@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <!--Google font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--jquary cdn link-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--CSS file-->
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #faf8f8;
+            display: flex;
+            font-family: 'montserrat', sans-serif;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            padding: 30px 0;
+            font-size: 30px;
+            font-weight: 500;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .time {
+            display: inline-block;
+            position: relative;
+            margin: 10px;
+        }
+
+        .time span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .time span:nth-child(1) {
+            width: 180px;
+            height: 50px;
+            color: #faf8f8;
+            font-size: 25px;
+            font-weight: 400;
+            text-align: center;
+            text-transform: uppercase;
+            background-color: #008c9e;
+        }
+
+        .time:nth-of-type(2) span:nth-child(1) {
+            background-color: #6fb40a;
+        }
+
+        .time:nth-of-type(3) span:nth-child(1) {
+            background-color: #c54800;
+        }
+
+        .time:nth-of-type(4) span:nth-child(1) {
+            background-color: #22a568;
+        }
+
+        .time span:nth-child(2) {
+            height: 150px;
+            color: #faf8f8;
+            background-color: #00b2cb;
+            font-size: 90px;
+            font-weight: 700;
+        }
+
+        .time:nth-of-type(2) span:nth-child(2) {
+            background-color: #8ee80e;
+        }
+
+        .time:nth-of-type(3) span:nth-child(2) {
+            background-color: #ff5d00;
+        }
+
+        .time:nth-of-type(4) span:nth-child(2) {
+            background-color: #2ad587;
+            ;
+        }
+    </style>
+    <!--jquary script file-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function showTime() {
+    // To Get current time/date
+    var date = new Date();
+                //make variable to get Hours minute, second
+                let hours = date.getHours();
+                let min = date.getMinutes();
+                let sec = date.getSeconds();
+
+                let session = "AM";
+
+                //condiations for time behavior
+
+                if (hours == 0) {
+                    hours = 12;
+                }
+                if (hours >= 12) {
+                    session = "PM";
+                }
+                if (hours > 12) {
+                    hours = hours - 12;
+                }
+
+                hours = hours < 10 ? "0" + hours : hours;
+                min = min < 10 ? "0" + min : min;
+                sec = sec < 10 ? "0" + sec : sec;
+
+                //set the variable to span
+
+                $("#hours").text(hours);
+                $("#min").text(min);
+                $("#sec").text(sec);
+                $("#period").text(session);
+
+                // to change time to every seconds
+                setTimeout(showTime, 1000);
+            }
+        showTime();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>This is the current time</h2>
+        <div class="time">
+            <span>Hours</span>
+            <span id="hours">00</span>
+        </div>
+        <div class="time">
+            <span>minute</span>
+            <span id="min">00</span>
+        </div>
+        <div class="time">
+            <span>seconds</span>
+            <span id="sec">00</span>
+        </div>
+        <div class="time">
+            <span>period</span>
+            <span id="period">Am</span>
+        </div>
+    </div>
+</body>
+
+</html>

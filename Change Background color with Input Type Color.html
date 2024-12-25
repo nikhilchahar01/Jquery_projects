@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background Color With Input Type Color</title>
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Google Font Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Part Of CSS -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+        }
+        div.container {
+            text-align: center;
+        }
+        h1 {
+            padding-bottom: 50px;
+            color: #000000;
+            text-align: center;
+            font-size: 80px;
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 10px;
+            transition: all 0.5s;
+        }
+        .color-range {
+            width: 600px;
+            height: 40px;
+            background: none;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+        .color-range::-webkit-color-swatch {
+            border-radius: 5px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <!-- Apply jQuery -->
+    <script>
+        $(document).ready(function() {
+            $('#color-range').on('input', function() {
+                $('body').css('background-color', $(this).val());
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Change Background Color</h1>
+        <input type="color" name="color" id="color-range" class="color-range" value="#f5f5f5">
+    </div>
+</body>
+</html>
